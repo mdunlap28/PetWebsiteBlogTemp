@@ -8,6 +8,32 @@ Released for free under a Creative Commons Attribution 2.5 License
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Forever Home</title>
+<?php
+	include "miniondb_connect.php";
+		$firstName = mysqli_real_escape_string($db, trim($_POST['firstName']));
+		$lastName = mysqli_real_escape_string($db, trim($_POST['lastName']));
+		$address = mysqli_real_escape_string($db, trim($_POST['address']));
+		$city = mysqli_real_escape_string($db, trim($_POST['city']));
+		$state = mysqli_real_escape_string($db, trim($_POST['state']));
+		$phone = mysqli_real_escape_string($db, trim($_POST['phoneNum']));
+		$email = mysqli_real_escape_string($db, trim($_POST['email']));
+		//$zipcode = mysqli_real_escape_string($db, trim($_POST['zipcode']));
+		$username = mysqli_real_escape_string($db, trim($_POST['username']));
+		$password = mysqli_real_escape_string($db, trim($_POST['password']));
+		//$secQ = mysqli_real_escape_string($db, trim($_POST['secQ']));
+		//$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
+		//$encryptedPW = sha1($pw);
+		
+		//$query = "INSERT INTO ownercontactinfo (FirstName, LastName, Address, City, State, Phone, e-mail) 
+		//VALUES ('$firstName', '$lastName', '$address', '$city', '$state', '$phone', '$email')";
+		
+		//$query2 = "INSERT INTO credentials (username, password)
+		//VALUES ('$username', '$password')";
+		
+        
+		//$result = mysqli_query($db, $query)
+        // or die("Error Querying Database");
+?>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="default.css" rel="stylesheet" type="text/css" />
@@ -29,7 +55,13 @@ Released for free under a Creative Commons Attribution 2.5 License
 				<li><a href="#" title="">Support</a></li>
 			</ul>
 		</div>
-		<!--<div id="login" class="boxed">
+		</div>
+	<div id="main">
+		<div id="Register your Minion" class="post">
+			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
+		
+		<p>Thank you for Registering. You can now place a Minion up for adoption or search for a Minion best suited for you.</p>
+		<div id="login" class="boxed">
 			<h2 class="title">User Account</h2>
 			<div class="content">
 				<form id="form1" method="post" action="#">
@@ -45,45 +77,9 @@ Released for free under a Creative Commons Attribution 2.5 License
 				</form>
 			</div>
 		</div>
-		-->
-	</div>
-	<div id="main">
-		<div id="Register your Minion" class="post">
-			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
-			<h2 class="title">Owner Registration</h2>
-			<!-- Owner Registration page -->
-			
-			<form method = "post" action = "ownerInfo.php">
-					<table>
-					<tr><td>First Name</td><td><input type="text" id="firstName" name="firstName" /></td></tr>
-					<tr><td>Last Name</td><td><input type="text" id="lastName" name="lastName"/></td></tr>
-					<tr><td>Address</td><td><input type="text" id="address" name="address"/></td></tr>
-					<tr><td>City</td><td><input type="text" id="city" name="city"/></td></tr>
-					<tr><td>State</td><td><input type="text" id="state" name="state"/></td></tr>
-					<tr><td>Phone Number</td><td><input type="text" id="phoneNum" name="phoneNum"/></td></tr>
-					<tr><td>E-mail</td><td><input type="text" id="email" name="email"/></td></tr>
-					
-					<!--<tr><td>Type of Minion</td><td><!--<input type="text" id="petType" name="petType"/>
-					
-					<select name="type">
-					<option>Cat</option>
-					<option>Dog</option>
-					<option>Exotic</option>
-					</select></td></tr>
-					-->
-					<tr><td>Username</td><td><input type="text" id="username" name="username"/></td></tr>
-					<tr><td>Password</td><td><input type="text" id="password" name="password"/></td></tr>
-					<tr><td>Re-Enter Password</td><td><input type="text" id="check" name="check"/></td></tr>
-					
-					<tr><td>&nbsp;</td><td><input type="submit" value="Register" /></td></tr>
-					</table>
-					
-					</form>
-			
-			
-		</div>
 		
-			
+		
+		
 		</div>
 	</div>
 </div>
