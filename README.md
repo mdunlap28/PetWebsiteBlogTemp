@@ -1,5 +1,8 @@
 PetWebsiteBlogTemp
 ==================
+GitHubTutorial: http://rogerdudler.github.com/git-guide/
+
+
 Clone the PetWebsiteBlogTemp and place in your directory:
 xampp/htdocs/PetWebsiteBlogTemp
 
