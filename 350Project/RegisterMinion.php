@@ -57,9 +57,10 @@ Released for free under a Creative Commons Attribution 2.5 License
 					<table>
 					<tr><td>First Name</td><td><input type="text" id="firstName" name="firstName" /></td></tr>
 					<tr><td>Last Name</td><td><input type="text" id="lastName" name="lastName"/></td></tr>
-					<tr><td>Address</td><td><input type="text" id="address" name="address"/></td></tr>
+					<tr><td>Street Address</td><td><input type="text" id="address" name="address"/></td></tr>
 					<tr><td>City</td><td><input type="text" id="city" name="city"/></td></tr>
 					<tr><td>State</td><td><input type="text" id="state" name="state"/></td></tr>
+					<tr><td>Zip</td><td><input type="text" id="zip" name="zip"/></td></tr>
 					<tr><td>Phone Number</td><td><input type="text" id="phoneNum" name="phoneNum"/></td></tr>
 					<tr><td>E-mail</td><td><input type="text" id="email" name="email"/></td></tr>
 					
@@ -74,7 +75,8 @@ Released for free under a Creative Commons Attribution 2.5 License
 					<tr><td>Username</td><td><input type="text" id="username" name="username"/></td></tr>
 					<tr><td>Password</td><td><input type="text" id="password" name="password"/></td></tr>
 					<tr><td>Re-Enter Password</td><td><input type="text" id="check" name="check"/></td></tr>
-					
+					<tr><td>Please Enter a Security Question</td><td><input type="text" id="question" name="question"/></td></tr>
+					<tr><td>Security Question Answer</td><td><input type="text" id="answer" name="answer"/></td></tr>
 					<tr><td>&nbsp;</td><td><input type="submit" value="Register" /></td></tr>
 					</table>
 					

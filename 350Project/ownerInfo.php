@@ -17,22 +17,36 @@ Released for free under a Creative Commons Attribution 2.5 License
 		$state = mysqli_real_escape_string($db, trim($_POST['state']));
 		$phone = mysqli_real_escape_string($db, trim($_POST['phoneNum']));
 		$email = mysqli_real_escape_string($db, trim($_POST['email']));
-		//$zipcode = mysqli_real_escape_string($db, trim($_POST['zipcode']));
+		$zipcode = mysqli_real_escape_string($db, trim($_POST['zip']));
 		$username = mysqli_real_escape_string($db, trim($_POST['username']));
 		$password = mysqli_real_escape_string($db, trim($_POST['password']));
-		//$secQ = mysqli_real_escape_string($db, trim($_POST['secQ']));
-		//$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
-		//$encryptedPW = sha1($pw);
+		$secQ = mysqli_real_escape_string($db, trim($_POST['question']));
+		$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
+		$encryptedPW = sha1($password);
 		
-		//$query = "INSERT INTO ownercontactinfo (FirstName, LastName, Address, City, State, Phone, e-mail) 
-		//VALUES ('$firstName', '$lastName', '$address', '$city', '$state', '$phone', '$email')";
+		echo $firstName;
+		echo $lastName;
+		echo $address;
+		echo $city;
+		echo $state;
+		echo $phone;
+		echo $email;
+		echo $zipcode;
 		
-		//$query2 = "INSERT INTO credentials (username, password)
-		//VALUES ('$username', '$password')";
+		$query = "INSERT INTO ownercontactinfo (FirstName, LastName, Address, City, State, zipcode, Phone, email) 
+		VALUES ('$firstName', '$lastName', '$address', '$city', '$state', '$zipcode', '$phone', '$email')";
 		
-        
-		//$result = mysqli_query($db, $query)
-        // or die("Error Querying Database");
+		//$query2 = "INSERT INTO credentials (username, password, securityquestion, securityanswer)
+		//VALUES ('$username', '$encryptedPW', '$secQ', '$answer)";
+		
+        echo $query;
+		$result = mysqli_query($db, $query)
+        or die("Error Querying Database");
+		
+		//$result2 = mysqli_query($db, $query2)
+        //or die("Error Querying Database");
+		
+		echo $query;
 ?>
 <meta name="keywords" content="" />
 <meta name="description" content="" />

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2013 at 05:39 AM
+-- Generation Time: Mar 05, 2013 at 05:27 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -19,7 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `petowners`
 --
-
+CREATE DATABASE IF NOT EXISTS petowners;
+GRANT ALL PRIVILEGES ON petowners.* to 'minion'@'localhost' identified by 'minion';
+USE petowners;
 -- --------------------------------------------------------
 
 --
@@ -34,6 +36,21 @@ CREATE TABLE IF NOT EXISTS `cats` (
   `Medical Conditions` blob NOT NULL,
   `Color` varchar(50) NOT NULL,
   `Age` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `credentials`
+--
+
+CREATE TABLE IF NOT EXISTS `credentials` (
+  `owner_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `securityquestion` varchar(100) NOT NULL,
+  `securityanswer` varchar(100) NOT NULL,
+  PRIMARY KEY (`owner_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,14 +76,26 @@ CREATE TABLE IF NOT EXISTS `dogs` (
 --
 
 CREATE TABLE IF NOT EXISTS `ownercontactinfo` (
+  `owner_id` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(30) NOT NULL,
   `LastName` varchar(30) NOT NULL,
   `Address` varchar(50) NOT NULL,
   `City` varchar(30) NOT NULL,
-  `State` varchar(2) NOT NULL,
-  `Phone` varchar(12) NOT NULL,
-  `e-mail` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `State` varchar(4) NOT NULL,
+  `zipcode` varchar(20) NOT NULL,
+  `Phone` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `credentials`
+--
+ALTER TABLE `credentials`
+  ADD CONSTRAINT `credentials_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
