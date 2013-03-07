@@ -24,7 +24,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 		$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
 		$encryptedPW = sha1($password);
 		
-		echo $firstName;
+		/*echo $firstName;
 		echo $lastName;
 		echo $address;
 		echo $city;
@@ -32,21 +32,29 @@ Released for free under a Creative Commons Attribution 2.5 License
 		echo $phone;
 		echo $email;
 		echo $zipcode;
+		echo $username;
+		echo $encryptedPW;
+		echo $secQ;
+		echo $answer;
+		*/
+		
 		
 		$query = "INSERT INTO ownercontactinfo (FirstName, LastName, Address, City, State, zipcode, Phone, email) 
 		VALUES ('$firstName', '$lastName', '$address', '$city', '$state', '$zipcode', '$phone', '$email')";
 		
-		//$query2 = "INSERT INTO credentials (username, password, securityquestion, securityanswer)
-		//VALUES ('$username', '$encryptedPW', '$secQ', '$answer)";
+		$query2 = "INSERT INTO credentials (username, password, securityquestion, securityanswer)
+		VALUES ('$username', '$encryptedPW', '$secQ', '$answer')";
 		
-        echo $query;
+        //echo $query2;
 		$result = mysqli_query($db, $query)
         or die("Error Querying Database");
 		
-		//$result2 = mysqli_query($db, $query2)
-        //or die("Error Querying Database");
+		$result2 = mysqli_query($db, $query2)
+        or die("Error Querying Database");
 		
-		echo $query;
+		//add email confirmation!!!
+		
+		//echo $query2;
 ?>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -61,7 +69,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 	<div id="sidebar">
 		<div id="menu">
 			<ul>
-				<li class="active"><a href="#" title="">Homepage</a></li>
+				<li class="active"><a href="index.html" title="">Homepage</a></li>
 				<li><a href="#" title="">About Us</a></li>
 				<li><a href="RegisterMinion.php" title="">Place Minion for Adoption</a></li>
 				<li><a href="#" title="">Find a Minion</a></li>
@@ -74,11 +82,12 @@ Released for free under a Creative Commons Attribution 2.5 License
 		<div id="Register your Minion" class="post">
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
 		
-		<p>Thank you for Registering. You can now place a Minion up for adoption or search for a Minion best suited for you.</p>
+		<p>Thank you <?=$firstName?> for Registering with Forever Home. </br>
+		Please log in to place a Minion up for adoption or search for a Minion best suited for you.</p>
 		<div id="login" class="boxed">
 			<h2 class="title">User Account</h2>
 			<div class="content">
-				<form id="form1" method="post" action="#">
+				<form id="form1" method="post" action="verifylogin.php">
 					<fieldset>
 					<legend>Sign-In</legend>
 					<label for="inputtext1">User ID:</label>

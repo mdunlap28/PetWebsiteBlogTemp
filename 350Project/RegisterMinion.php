@@ -21,7 +21,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 	<div id="sidebar">
 		<div id="menu">
 			<ul>
-				<li class="active"><a href="#" title="">Homepage</a></li>
+				<li class="active"><a href="index.html" title="">Homepage</a></li>
 				<li><a href="#" title="">About Us</a></li>
 				<li><a href="RegisterMinion.php" title="">Place Minion for Adoption</a></li>
 				<li><a href="#" title="">Find a Minion</a></li>
