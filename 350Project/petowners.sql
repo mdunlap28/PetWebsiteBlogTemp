@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2013 at 05:27 PM
+-- Generation Time: Mar 15, 2013 at 02:50 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -19,24 +19,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `petowners`
 --
-CREATE DATABASE IF NOT EXISTS petowners;
-GRANT ALL PRIVILEGES ON petowners.* to 'minion'@'localhost' identified by 'minion';
-USE petowners;
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cats`
+-- Table structure for table `breed_id`
 --
 
-CREATE TABLE IF NOT EXISTS `cats` (
-  `Name` varchar(30) NOT NULL,
-  `Breed` varchar(50) NOT NULL,
-  `Sex` varchar(2) NOT NULL,
-  `Spayed/Neutered` varchar(2) NOT NULL,
-  `Medical Conditions` blob NOT NULL,
-  `Color` varchar(50) NOT NULL,
-  `Age` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `breed_id` (
+  `breed_id` int(11) NOT NULL AUTO_INCREMENT,
+  `breed` varchar(50) NOT NULL,
+  PRIMARY KEY (`breed_id`),
+  KEY `breed_id` (`breed_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `color`
+--
+
+CREATE TABLE IF NOT EXISTS `color` (
+  `color_id` int(11) NOT NULL AUTO_INCREMENT,
+  `color` varchar(50) NOT NULL,
+  PRIMARY KEY (`color_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -45,29 +52,30 @@ CREATE TABLE IF NOT EXISTS `cats` (
 --
 
 CREATE TABLE IF NOT EXISTS `credentials` (
-  `owner_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `securityquestion` varchar(100) NOT NULL,
-  `securityanswer` varchar(100) NOT NULL,
-  PRIMARY KEY (`owner_id`)
+  `owner_id` int(11) NOT NULL,
+  PRIMARY KEY (`username`,`password`),
+  UNIQUE KEY `owner_id` (`owner_id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `password` (`password`),
+  UNIQUE KEY `owner_id_4` (`owner_id`),
+  KEY `owner_id_2` (`owner_id`),
+  KEY `owner_id_3` (`owner_id`),
+  KEY `owner_id_5` (`owner_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dogs`
+-- Table structure for table `med_conditions`
 --
 
-CREATE TABLE IF NOT EXISTS `dogs` (
-  `Name` varchar(20) NOT NULL,
-  `Breed` varchar(50) NOT NULL,
-  `Color` varchar(50) NOT NULL,
-  `Age` int(2) NOT NULL,
-  `Spayed/Neutered` varchar(2) NOT NULL,
-  `Sex` varchar(2) NOT NULL,
-  `Medical Conditions` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `med_conditions` (
+  `med_id` int(11) NOT NULL AUTO_INCREMENT,
+  `condition` mediumblob NOT NULL,
+  PRIMARY KEY (`med_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -77,16 +85,133 @@ CREATE TABLE IF NOT EXISTS `dogs` (
 
 CREATE TABLE IF NOT EXISTS `ownercontactinfo` (
   `owner_id` int(11) NOT NULL AUTO_INCREMENT,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Address` varchar(50) NOT NULL,
-  `City` varchar(30) NOT NULL,
-  `State` varchar(4) NOT NULL,
-  `zipcode` varchar(20) NOT NULL,
+  `First` varchar(30) NOT NULL,
+  `Last` varchar(30) NOT NULL,
+  `zip` int(20) NOT NULL,
   `Phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`owner_id`)
+  PRIMARY KEY (`owner_id`),
+  KEY `zip` (`zip`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `owner_pet`
+--
+
+CREATE TABLE IF NOT EXISTS `owner_pet` (
+  `owner_id` int(11) NOT NULL,
+  `pet_id` int(11) NOT NULL,
+  UNIQUE KEY `owner_id` (`owner_id`,`pet_id`),
+  KEY `pet_id` (`pet_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pet_color`
+--
+
+CREATE TABLE IF NOT EXISTS `pet_color` (
+  `pet_id` int(11) NOT NULL,
+  `color_id` int(11) NOT NULL,
+  KEY `pet_id` (`pet_id`),
+  KEY `color_id` (`color_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pet_info`
+--
+
+CREATE TABLE IF NOT EXISTS `pet_info` (
+  `pet_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(30) NOT NULL,
+  `Age` int(11) NOT NULL,
+  `Sex` char(2) NOT NULL,
+  `breed_id` int(11) NOT NULL,
+  `color_id` int(11) NOT NULL,
+  `vac_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `picture` int(11) NOT NULL,
+  `fixed` char(2) NOT NULL,
+  `med_id` int(11) NOT NULL,
+  `temp_id` int(11) NOT NULL,
+  PRIMARY KEY (`pet_id`),
+  KEY `breed_id` (`breed_id`),
+  KEY `type_id` (`type_id`),
+  KEY `vac_id` (`vac_id`),
+  KEY `color_id` (`color_id`),
+  KEY `color_id_2` (`color_id`),
+  KEY `med_id` (`med_id`),
+  KEY `temp_id` (`temp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pet_vac`
+--
+
+CREATE TABLE IF NOT EXISTS `pet_vac` (
+  `pet_id` int(11) NOT NULL,
+  `vac_id` int(11) NOT NULL,
+  KEY `pet_id` (`pet_id`),
+  KEY `vac_id` (`vac_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temperment`
+--
+
+CREATE TABLE IF NOT EXISTS `temperment` (
+  `temp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `temperment` int(11) NOT NULL,
+  PRIMARY KEY (`temp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE IF NOT EXISTS `type` (
+  `type_id` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vaccines`
+--
+
+CREATE TABLE IF NOT EXISTS `vaccines` (
+  `vac_id` int(11) NOT NULL,
+  `vaccine` int(11) NOT NULL,
+  PRIMARY KEY (`vac_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zip_code`
+--
+
+CREATE TABLE IF NOT EXISTS `zip_code` (
+  `address` varchar(50) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `state` char(2) NOT NULL,
+  `zip` int(10) NOT NULL,
+  PRIMARY KEY (`zip`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Constraints for dumped tables
 --
@@ -95,7 +220,45 @@ CREATE TABLE IF NOT EXISTS `ownercontactinfo` (
 -- Constraints for table `credentials`
 --
 ALTER TABLE `credentials`
-  ADD CONSTRAINT `credentials_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`);
+  ADD CONSTRAINT `credentials_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ownercontactinfo`
+--
+ALTER TABLE `ownercontactinfo`
+  ADD CONSTRAINT `ownercontactinfo_ibfk_1` FOREIGN KEY (`zip`) REFERENCES `zip_code` (`zip`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `owner_pet`
+--
+ALTER TABLE `owner_pet`
+  ADD CONSTRAINT `owner_pet_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`),
+  ADD CONSTRAINT `owner_pet_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pet_color`
+--
+ALTER TABLE `pet_color`
+  ADD CONSTRAINT `pet_color_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_color_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pet_info`
+--
+ALTER TABLE `pet_info`
+  ADD CONSTRAINT `pet_info_ibfk_11` FOREIGN KEY (`temp_id`) REFERENCES `temperment` (`temp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_10` FOREIGN KEY (`med_id`) REFERENCES `med_conditions` (`med_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_6` FOREIGN KEY (`breed_id`) REFERENCES `breed_id` (`breed_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_7` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_8` FOREIGN KEY (`vac_id`) REFERENCES `vaccines` (`vac_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_9` FOREIGN KEY (`type_id`) REFERENCES `type` (`type_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pet_vac`
+--
+ALTER TABLE `pet_vac`
+  ADD CONSTRAINT `pet_vac_ibfk_2` FOREIGN KEY (`vac_id`) REFERENCES `vaccines` (`vac_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_vac_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

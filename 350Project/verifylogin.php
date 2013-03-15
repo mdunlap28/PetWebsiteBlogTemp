@@ -10,14 +10,11 @@ Released for free under a Creative Commons Attribution 2.5 License
 <title>Forever Home</title>
 <?php
 include "miniondb_connect.php";
-	if (isset($_POST['name'])){
+
+	if (isset($_POST['name']) && isset($_POST['password'])){
 	   $uName = mysqli_real_escape_string($db, trim($_POST['name']));
 	   $pwd = mysqli_real_escape_string($db, trim($_POST['password']));
 	   $encryptedPW = sha1($pwd);
-	   
-	   echo $uName;
-	   echo $pwd;
-	   echo $encryptedPW;
 	   
 	   $query = "select * from credentials WHERE username = '$uName' AND password = '$encryptedPW'";
 	   
@@ -29,11 +26,12 @@ include "miniondb_connect.php";
 		 $pword = $row['password'];
   		 $user = $row['username'];
 		 //setcookie("ZipCode", $row['zipcode'], time() + 3600 * 24); 
-		}
+		}else{
+		die("Incorrect username/password!");
 		}
 //if (isset($_POST['username'])) {
   //      echo "<h2>Incorrect Username/Password</h2>";
-    //    }
+        }
 ?>
 
 <meta name="keywords" content="" />

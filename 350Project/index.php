@@ -31,13 +31,6 @@ Released for free under a Creative Commons Attribution 2.5 License
 			</ul>
 		</div>
 		<div id="login" class="boxed">
-			        
-		<?php
-		
-        if (isset($_POST['username'])) {
-        echo "<h3>Incorrect Username/Password.</h3>";
-        }
-        ?>
 		
 			<h2 class="title">User Account</h2>
 		
