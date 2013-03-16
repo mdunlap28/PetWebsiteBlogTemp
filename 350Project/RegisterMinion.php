@@ -80,10 +80,11 @@ Released for free under a Creative Commons Attribution 2.5 License
 					<tr><td>Phone Number</td><td><input type="text" id="phoneNum" name="phoneNum"/></td></tr>
 					<div id="alert"></div>
 					<tr><td>E-mail</td><td><input type="text" id="email" name="email"/></td></tr>
+					<tr><td>Username</td><td><input type="username" id="username" name="username"/></td></tr>
 					<tr><td>Password</td><td><input type="password" id="password" name="password"/></td></tr>	
 					<tr><td>Re-Enter Password</td><td><input type="password" id="check" name="check" onChange="matchPasswords()"/></td></tr>
-					<tr><td>Please Enter a Security Question</td><td><input type="text" id="question" name="question"/></td></tr>
-					<tr><td>Security Question Answer</td><td><input type="text" id="answer" name="answer"/></td></tr>
+					<!--<tr><td>Please Enter a Security Question</td><td><input type="text" id="question" name="question"/></td></tr>
+					<tr><td>Security Question Answer</td><td><input type="text" id="answer" name="answer"/></td></tr>-->
 					<tr><td>&nbsp;</td><td><input type="submit" value="Register" /></td></tr>
 					</table>
 					

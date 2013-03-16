@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2013 at 02:50 AM
+-- Generation Time: Mar 16, 2013 at 07:49 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -90,9 +90,19 @@ CREATE TABLE IF NOT EXISTS `ownercontactinfo` (
   `zip` int(20) NOT NULL,
   `Phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` char(4) NOT NULL,
   PRIMARY KEY (`owner_id`),
   KEY `zip` (`zip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `ownercontactinfo`
+--
+
+INSERT INTO `ownercontactinfo` (`owner_id`, `First`, `Last`, `zip`, `Phone`, `email`, `address`, `city`, `state`) VALUES
+(5, 'Jenn', 'Cartel', 22407, '234-999-5847', 'jcartel@yahoo.com', '456 Shire Dr.', 'Fredericksburg', 'VA');
 
 -- --------------------------------------------------------
 
@@ -198,20 +208,6 @@ CREATE TABLE IF NOT EXISTS `vaccines` (
   PRIMARY KEY (`vac_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `zip_code`
---
-
-CREATE TABLE IF NOT EXISTS `zip_code` (
-  `address` varchar(50) NOT NULL,
-  `city` varchar(30) NOT NULL,
-  `state` char(2) NOT NULL,
-  `zip` int(10) NOT NULL,
-  PRIMARY KEY (`zip`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Constraints for dumped tables
 --
@@ -223,31 +219,24 @@ ALTER TABLE `credentials`
   ADD CONSTRAINT `credentials_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `ownercontactinfo`
---
-ALTER TABLE `ownercontactinfo`
-  ADD CONSTRAINT `ownercontactinfo_ibfk_1` FOREIGN KEY (`zip`) REFERENCES `zip_code` (`zip`) ON UPDATE CASCADE;
-
---
 -- Constraints for table `owner_pet`
 --
 ALTER TABLE `owner_pet`
-  ADD CONSTRAINT `owner_pet_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`),
-  ADD CONSTRAINT `owner_pet_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `ownercontactinfo` (`owner_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `owner_pet_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`);
 
 --
 -- Constraints for table `pet_color`
 --
 ALTER TABLE `pet_color`
-  ADD CONSTRAINT `pet_color_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pet_color_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pet_color_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_color_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pet_info`
 --
 ALTER TABLE `pet_info`
-  ADD CONSTRAINT `pet_info_ibfk_11` FOREIGN KEY (`temp_id`) REFERENCES `temperment` (`temp_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pet_info_ibfk_10` FOREIGN KEY (`med_id`) REFERENCES `med_conditions` (`med_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_info_ibfk_11` FOREIGN KEY (`temp_id`) REFERENCES `temperment` (`temp_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pet_info_ibfk_6` FOREIGN KEY (`breed_id`) REFERENCES `breed_id` (`breed_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pet_info_ibfk_7` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pet_info_ibfk_8` FOREIGN KEY (`vac_id`) REFERENCES `vaccines` (`vac_id`) ON UPDATE CASCADE,
@@ -257,8 +246,8 @@ ALTER TABLE `pet_info`
 -- Constraints for table `pet_vac`
 --
 ALTER TABLE `pet_vac`
-  ADD CONSTRAINT `pet_vac_ibfk_2` FOREIGN KEY (`vac_id`) REFERENCES `vaccines` (`vac_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pet_vac_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pet_vac_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pet_info` (`pet_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_vac_ibfk_2` FOREIGN KEY (`vac_id`) REFERENCES `vaccines` (`vac_id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

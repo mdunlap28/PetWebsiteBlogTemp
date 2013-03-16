@@ -18,35 +18,50 @@ Released for free under a Creative Commons Attribution 2.5 License
 		$phone = mysqli_real_escape_string($db, trim($_POST['phoneNum']));
 		$email = mysqli_real_escape_string($db, trim($_POST['email']));
 		$zipcode = mysqli_real_escape_string($db, trim($_POST['zip']));
-		//$username = mysqli_real_escape_string($db, trim($_POST['username']));
+		$username = mysqli_real_escape_string($db, trim($_POST['username']));
 		$password = mysqli_real_escape_string($db, trim($_POST['password']));
-		$secQ = mysqli_real_escape_string($db, trim($_POST['question']));
-		$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
+		//$secQ = mysqli_real_escape_string($db, trim($_POST['question']));
+		//$answer = mysqli_real_escape_string($db, trim($_POST['answer']));
 		$encryptedPW = sha1($password);
 		
 		
-		$unamequery = "SELECT COUNT(*) FROM credentials WHERE username = '$email'";
+		$unamequery = "SELECT COUNT(*) FROM credentials WHERE username = '$username'";
+		
 	    $unameresult = mysqli_query($db, $unamequery)
          or die("Error Querying Database");
 		 
+		 echo $unamequery;
+		 
+		 echo $unameresult -> num_rows;
+		 
 		 $num_rows = $unameresult -> num_rows;
 		 
-		 if($num_rows > 0){ 
-			//echo 'This email address already exists! Please re-enter your email and password.';
+		 if($num_rows > 1){ 
+			echo 'This username already exists! Please re-enter your username and password.';
 			?>	
 			 <script type="text/javascript">
-				alert("This email address already exists! Please re-enter your email and password.");
+			//	alert("This username already exists! Please re-enter your username and password.");
 				</script>
 			<?php
-			header("location:RegisterMinion.php");
+		//	header("location:RegisterMinion.php");
 		 
 		}else{
 		
-		$query = "INSERT INTO ownercontactinfo (FirstName, LastName, Address, City, State, zipcode, Phone, email) 
-		VALUES ('$firstName', '$lastName', '$address', '$city', '$state', '$zipcode', '$phone', '$email')";
+		/*$query = "INSERT INTO ownercontactinfo (First, Last, zip, Phone, email, address, city, state) 
+		VALUES ('$firstName', '$lastName','$zipcode', '$phone', '$email', $address', '$city', '$state');INSERT INTO credentials (username, password)
+		VALUES ('$email', '$encryptedPW');INSERT INTO zip_code (address, city, state, zip)
+		VALUES ('$address', '$city', '$state', '$zipcode')";
+		*/
 		
-		$query2 = "INSERT INTO credentials (username, password, securityquestion, securityanswer)
-		VALUES ('$email', '$encryptedPW', '$secQ', '$answer')";
+		$query = "INSERT INTO ownercontactinfo (First, Last, zip, Phone, email, address, city, state) 
+		VALUES ('$firstName', '$lastName','$zipcode', '$phone', '$email', '$address', '$city', '$state')";
+		
+		echo $query;
+		
+		$query2 = "INSERT INTO credentials (username, password, owner_id)
+		VALUES ('$username', '$encryptedPW', LAST_INSERT_ID())";
+		
+		echo $query2;
 		
 		$result = mysqli_query($db, $query)
         or die("Error Querying Database");
@@ -54,6 +69,9 @@ Released for free under a Creative Commons Attribution 2.5 License
 		$result2 = mysqli_query($db, $query2)
         or die("Error Querying Database");
 		
+		
+		//header("location:index.php");
+		echo ("yaya!");
 		}
 		
 		
