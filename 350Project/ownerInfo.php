@@ -53,23 +53,32 @@ Released for free under a Creative Commons Attribution 2.5 License
 		VALUES ('$address', '$city', '$state', '$zipcode')";
 		*/
 		
-		$query = "INSERT INTO ownercontactinfo (First, Last, zip, Phone, email, address, city, state) 
-		VALUES ('$firstName', '$lastName','$zipcode', '$phone', '$email', '$address', '$city', '$state')";
-		
+		$query = "INSERT INTO ownercontactinfo (First, Last, Phone, email) 
+		VALUES ('$firstName', '$lastName', '$phone', '$email')";
+
 		echo $query;
+		
+		
+		$query3 = "INSERT INTO location (owner_id, address, zip, city, state) 
+		VALUES (LAST_INSERT_ID(),'$address', '$zipcode', '$city', '$state')";
+
+		echo $query3;
 		
 		$query2 = "INSERT INTO credentials (username, password, owner_id)
 		VALUES ('$username', '$encryptedPW', LAST_INSERT_ID())";
-		
+
 		echo $query2;
-		
+
 		$result = mysqli_query($db, $query)
         or die("Error Querying Database");
-		
+
 		$result2 = mysqli_query($db, $query2)
         or die("Error Querying Database");
 		
-		
+		$result3 = mysqli_query($db, $query3)
+        or die("Error Querying Database");
+
+
 		//header("location:index.php");
 		echo ("yaya!");
 		}
