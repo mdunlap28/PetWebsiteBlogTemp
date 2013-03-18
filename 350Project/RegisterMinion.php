@@ -56,7 +56,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 				<li><a href="index.php" title="">Homepage</a></li>
 				<li><a href="#" title="">About Us</a></li>
 				<li class="active"><a href="RegisterMinion.php" title="">Register</a></li>
-				<li><a href="#" title="">Find a Minion</a></li>
+				<li><a href="findMinion.php" title="">Find a Minion</a></li>
 				<li><a href="#" title="">Adopt a Minion</a></li>
 				<li><a href="#" title="">Support</a></li>
 			</ul>
@@ -66,7 +66,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 	<div id="main">
 		<div id="Register your Minion" class="post">
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
-			<h2 class="title">Owner Registration</h2>
+			<h1 class="title">Owner Registration</h1>
 			<!-- Owner Registration page -->
 			
 			<form method = "post" action = "ownerInfo.php">
