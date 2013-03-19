@@ -32,7 +32,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 		</div>
 		</div>
 <div id="main">
-		<div id="Register your Minion" class="post">
+		<div id="Register Your Minion" class="post">
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
 			<h1 class="title">Find a Minion</h1>
 			<!-- Find a Minion -->		
@@ -69,13 +69,13 @@ Released for free under a Creative Commons Attribution 2.5 License
 					<td><select name="temp" style="width:144px">
 						<option value="">Temperment...</option>
 						<option value="children">Good with Children</option>
-						<option value="dogs">Good with dogs</option>
-						<option value="cats">Good with cats</option>
-						<option value="all">Good with dogs and cats</option>
-						<option value="alloptions">Search all</option>
+						<option value="dogs">Good with Dogs</option>
+						<option value="cats">Good with Cats</option>
+						<option value="all">Good with Dogs and Cats</option>
+						<option value="alloptions">Search All</option>
 					</select></td></tr>
 												
-			<tr><td></td><td><input type="submit" value="Find me a minion!" /></td></tr>
+			<tr><td></td><td><input type="submit" value="Find me a minion, please!" /></td></tr>
 					</table>
 					</br>
 					</form>
