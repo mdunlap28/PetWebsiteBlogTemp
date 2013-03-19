@@ -14,37 +14,6 @@ Released for free under a Creative Commons Attribution 2.5 License
 <link href="default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-<script>
-	function matchPasswords(){
-		
-		var pass1 = document.getElementById("password").value;
-		var pass2 = document.getElementById("check").value;
-		
-		if(pass1 != pass2) {
-			alert ("Passwords do not match! Please re-enter your passwords.");
-			}
-		}
-</script>
-			
-
-	<!--function checkMe(){
-		include "miniondb_connect.php";
-		$uName = mysqli_real_escape_string($db, trim($_POST['username']));
-		$query = "SELECT COUNT(*) FROM credentials WHERE username = '$uName'";
-	   
-	   $result = mysqli_query($db, $query)
-         or die("Error Querying Database");
-		 
-		 if(mysql_num_rows($result) > 0){
-			echo 'Username exists! Please choose another user name.';
-			}
-		 
-		}
-		
-	-->
-
-
 <div id="logo">
 	<h1><a href="#">Forever <i> Home</i></a></h1>
 	<h2><span>By Free CSS Templates</span></h2>
@@ -55,48 +24,74 @@ Released for free under a Creative Commons Attribution 2.5 License
 			<ul>
 				<li><a href="index.php" title="">Homepage</a></li>
 				<li><a href="#" title="">About Us</a></li>
-				<li class="active"><a href="RegisterMinion.php" title="">Register</a></li>
-				<li><a href="findMinion.php" title="">Find a Minion</a></li>
-				<li><a href="#" title="">Adopt a Minion</a></li>
+				<li><a href="RegisterOwner.php" title="">Register</a></li>
+				<li class="active"><a href="findMinion.php" title="">Find a Minion</a></li>
+				<li class="active"><a href="findMinion.php" title="">Adopt a Minion</a></li>
 				<li><a href="#" title="">Support</a></li>
 			</ul>
 		</div>
-		
-	</div>
-	<div id="main">
-		<div id="Register your Minion" class="post">
+		</div>
+<div id="main">
+		<div id="Register Minion" class="post">
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
-			<h1 class="title">Owner Registration</h1>
-			<!-- Owner Registration page -->
+			<h1 class="title">Place a minion up for adoption.</h1>
+			<!-- Place minion -->		
 			
-			<form method = "post" action = "ownerInfo.php">
+			<p>Please fill in the following fields. Provide sufficient information to 
+			ensure your minion finds the right home.</p>
+			
+			<form method = "post" action = "minionInfo.php">
 					<table>
-					<tr><td>First Name</td><td><input type="text" id="firstName" name="firstName" /></td></tr>
-					<tr><td>Last Name</td><td><input type="text" id="lastName" name="lastName"/></td></tr>
-					<tr><td>Street Address</td><td><input type="text" id="address" name="address"/></td></tr>
-					<tr><td>City</td><td><input type="text" id="city" name="city"/></td></tr>
-					<tr><td>State</td><td><input type="text" id="state" name="state"/></td></tr>
-					<tr><td>Zip</td><td><input type="text" id="zip" name="zip"/></td></tr>
-					<tr><td>Phone Number</td><td><input type="text" id="phoneNum" name="phoneNum"/></td></tr>
-					<div id="alert"></div>
-					<tr><td>E-mail</td><td><input type="text" id="email" name="email"/></td></tr>
-					<tr><td>Username</td><td><input type="username" id="username" name="username"/></td></tr>
-					<tr><td>Password</td><td><input type="password" id="password" name="password"/></td></tr>	
-					<tr><td>Re-Enter Password</td><td><input type="password" id="check" name="check" onChange="matchPasswords()"/></td></tr>
-					<!--<tr><td>Please Enter a Security Question</td><td><input type="text" id="question" name="question"/></td></tr>
-					<tr><td>Security Question Answer</td><td><input type="text" id="answer" name="answer"/></td></tr>-->
-					<tr><td>&nbsp;</td><td><input type="submit" value="Register" /></td></tr>
+					<tr><td>Minion name: </td><td><input type="text" id="minionName" name="minionName" /></td></tr>
+					<tr><td>Age</td><td><input type="text" id="age" name="age"/></td></tr>
+					<tr><td>Sex</td><td><input type="text" id="sex" name="sex"/></td></tr>
+					<tr><td>Breed</td><td><input type="text" id="breed" name="breed"/></td></tr>
+					<tr><td>Color</td><td><input type="text" id="color" name="color"/></td></tr>
+					<!--<tr><td>Type</td><td><input type="text" id="type" name="type"/></td></tr>-->
+					<tr><td>Does your minion currently have any medical conditions? Please explain.</td><td>
+					<textarea id="medical" name="medical" cols="30" rows="6"></textarea></td></tr>
+					<div id="animal_options" class="checkbox_list animal_list">
+					<tr><td>Type:</td>
+					<td><input class="dog_breed" id="dog-label" type="radio" name="animal" value="dog" checked="checked">
+						<label for="dog-label">Dog</label>
+					<input class="cat_breed" id="cat-label" type="radio" name="animal" value="cat">
+						<label for="cat-label">Cat</label>
+					<input class="exotic_breed" id="exotic-label" type="radio" name="animal" value="exotic">
+						<label for="exotic-label">Exotic</label>
+				</div>
+					<tr><td>Is your minion spayed or neutered? </td>
+					<td><select name="fixed" style="width:144px">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select></td></tr>
+					<tr><td>Is your minion current on vaccines? </td>
+					<td><select name="vaccines" style="width:144px">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select></td></tr>
+					<tr></tr><tr></tr>
+					<tr><td>Temperment: </td><td>
+				<input type="checkbox" name="temp1" value="unknown">&nbsp;Unknown
+				<input type="checkbox" name="temp1" value="children">&nbsp;Good with children</td></tr>
+				<tr><td></td><td><input type="checkbox" name="temp1" value="dogs">&nbsp;Good with dogs
+				<input type="checkbox" name="temp4" value="cats">&nbsp;Good with cats</td></tr>
+				<tr><td></td><td><input type="checkbox" name="temp5" value="allpets">&nbsp;Good with all pets
+				<input type="checkbox" name="temp6" value="friendly">&nbsp;Friendly</td></tr>
+				<tr><td></td><td><input type="checkbox" name="temp7" value="timid">&nbsp;Timid
+				<input type="checkbox" name="temp8" value="energetic">&nbsp;Energetic
+				<input type="checkbox" name="temp9" value="fearful">&nbsp;Fearful</td></tr>
+				<tr><td></td><td><tr><td></td><td><tr><td></td><td><tr><td></td><td>
+				<tr><td>Upload Picture: </td><td><form name="picture" action="" method="post">
+					<input type="file" name="uploadPicture" />
+				</form></td></tr>
+					
+					<tr><td>&nbsp;</td><td><input type="submit" value="Register Minion" /></td></tr>
 					</table>
 					
 					</form>
 			
-			
-		</div>
-		
-			
-		</div>
+			</div>
 	</div>
-</div>
 <div id="footer">
 	<p id="legal">Copyright &copy; 2013 Forever Home. All Rights Reserved. Designed by <a href="http://www.freecsstemplates.org">FCT</a>.</p>
 	<p id="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
