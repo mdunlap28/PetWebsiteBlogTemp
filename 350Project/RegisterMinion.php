@@ -14,6 +14,40 @@ Released for free under a Creative Commons Attribution 2.5 License
 <link href="default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+<script>
+	function matchPasswords(){
+		
+		var pass1 = document.getElementById("password").value;
+		var pass2 = document.getElementById("check").value;
+		
+		if(pass1 != pass2) {
+			alert ("Uh oh, passwords don't match! Please re-enter your passwords.");
+			}
+		}
+</script>
+			
+
+	<!--function checkMe(){
+		include "miniondb_connect.php";
+		$uName = mysqli_real_escape_string($db, trim($_POST['username']));
+		$query = "SELECT COUNT(*) FROM credentials WHERE username = '$uName'";
+	   
+	   $result = mysqli_query($db, $query)
+         or die("Error Querying Database");
+		 
+		 if(mysql_num_rows($result) > 0){
+			echo 'Username exists! Please choose another user name.';
+			}
+		 
+		}
+		
+	-->
+
+
+>>>>>>> d14e0e9dc562cccdb5801bb0259ad193cd321870
 <div id="logo">
 	<h1><a href="#">Forever <i> Home</i></a></h1>
 	<h2><span>By Free CSS Templates</span></h2>
@@ -30,9 +64,16 @@ Released for free under a Creative Commons Attribution 2.5 License
 				<li><a href="#" title="">Support</a></li>
 			</ul>
 		</div>
+<<<<<<< HEAD
 		</div>
 <div id="main">
 		<div id="Register Minion" class="post">
+=======
+		
+	</div>
+	<div id="main">
+		<div id="Register Your Minion" class="post">
+>>>>>>> d14e0e9dc562cccdb5801bb0259ad193cd321870
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
 			<h1 class="title">Place a minion up for adoption.</h1>
 			<!-- Place minion -->		
