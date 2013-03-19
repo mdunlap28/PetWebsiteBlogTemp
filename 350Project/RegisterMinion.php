@@ -22,7 +22,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 		var pass2 = document.getElementById("check").value;
 		
 		if(pass1 != pass2) {
-			alert ("Passwords do not match! Please re-enter your passwords.");
+			alert ("Uh oh, passwords don't match! Please re-enter your passwords.");
 			}
 		}
 </script>
@@ -64,7 +64,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 		
 	</div>
 	<div id="main">
-		<div id="Register your Minion" class="post">
+		<div id="Register Your Minion" class="post">
 			<p><img src="images/pets2.jpg" alt="" width="500" height="300" /></p>
 			<h1 class="title">Owner Registration</h1>
 			<!-- Owner Registration page -->
